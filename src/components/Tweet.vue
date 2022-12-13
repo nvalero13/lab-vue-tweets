@@ -1,38 +1,38 @@
 <template>
   <div className="tweet">
-    <img
-      src="https://i.imgur.com/9yw1Fyw.jpg"
-      className="profile"
-      alt="profile"
-    />
 
+  <ProfileImage :url="tweet.user.image"/>
     <div className="body">
       <div className="top">
         <span className="user">
-          <span className="name">Ironhack</span>
-          <span className="handle">@ironhack</span>
+          <User :name="tweet.user.name" :handle="tweet.user.handle"/>
         </span>
 
-        <span className="timestamp">Nov 30, 2020</span>
+        <Timestamp :timestamp="tweet.timestamp"/>
+
       </div>
 
-      <p className="message">
-        On December 7th, we will be hosting a #webinar that will introduce you
-        to #SQL! Are you ready? 🚀
-      </p>
+      <Message :message="tweet.message"/>
 
-      <div className="actions">
-        <!-- Font Awesome icons -->
-        <i class="far fa-comment"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-share"></i>
-      </div>
+      <Buttons/>
     </div>
 
     <i class="fas fa-ellipsis-h"></i>
   </div>
 </template>
+
+<script setup>
+import User from "./User.vue"
+import ProfileImage from "./ProfileImage.vue";
+import Timestamp from "./Timestamp.vue";
+import Message from "./Message.vue";
+import Buttons from "./Buttons.vue";
+
+import { ref } from 'vue';
+
+const props = defineProps(["tweet"]);
+
+</script>
 
 <style scoped>
 a {
